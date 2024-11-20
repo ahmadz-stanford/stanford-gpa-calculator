@@ -167,7 +167,7 @@ export default function Home() {
         
         {/* Attribution */}
         <div className="text-center mt-6 text-base font-medium text-gray-700 select-none">
-          Made by Ahmad Zafar (using claude)
+          ahmadz@stanford.edu
         </div>
       </div>
     </main>
