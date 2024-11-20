@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
-  const [courses, setCourses] = useState([{ grade: 'A', units: 3 }]);  // Default to 3 units instead of 4
+  const [courses, setCourses] = useState([{ grade: 'A', units: 3 }]);
   const [currentGPA, setCurrentGPA] = useState('');
   const [currentUnits, setCurrentUnits] = useState('');
 
@@ -38,7 +38,7 @@ export default function Home() {
   };
 
   const addCourse = () => {
-    setCourses([...courses, { grade: 'A', units: 3 }]);  // Default to 3 units
+    setCourses([...courses, { grade: 'A', units: 3 }]);
   };
 
   const removeCourse = (index) => {
@@ -50,9 +50,8 @@ export default function Home() {
   const updateCourse = (index, field, value) => {
     const newCourses = [...courses];
     if (field === 'units') {
-      // Ensure units stay between 1 and 5
       const numValue = parseInt(value) || 1;
-      newCourses[index][field] = Math.min(Math.max(numValue, 1), 5);
+      newCourses[index][field] = Math.min(Math.max(numValue, 1), 8);
     } else {
       newCourses[index][field] = value;
     }
@@ -64,11 +63,11 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-gray-50 pb-20">
       {/* Stanford brand color header */}
-      <div className="fixed top-0 left-0 right-0 h-16 bg-[#8C1515] z-10"/>
+      <div className="sticky top-0 left-0 right-0 h-16 bg-[#8C1515] z-10 shadow-md"/>
       
-      <div className="max-w-xl mx-auto px-4 py-20 md:px-6">
+      <div className="w-full max-w-xl mx-auto px-4 py-6">
         <div className="bg-white p-4 md:p-6 rounded-lg shadow-lg">
           <div className="text-center mb-6">
             <h1 className="text-2xl md:text-4xl font-bold text-[#8C1515] select-none">Stanford GPA Calculator</h1>
@@ -85,7 +84,7 @@ export default function Home() {
                   step="0.01"
                   min="0"
                   max="4.3"
-                  className="w-full p-3 border rounded text-lg"
+                  className="w-full p-3 border rounded text-lg bg-white"
                   value={currentGPA}
                   onChange={(e) => setCurrentGPA(e.target.value)}
                   placeholder="Enter current GPA"
@@ -98,7 +97,7 @@ export default function Home() {
                   inputMode="numeric"
                   pattern="[0-9]*"
                   min="0"
-                  className="w-full p-3 border rounded text-lg"
+                  className="w-full p-3 border rounded text-lg bg-white"
                   value={currentUnits}
                   onChange={(e) => setCurrentUnits(e.target.value)}
                   placeholder="Enter total units"
@@ -106,7 +105,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div>
+            <div className="mt-6">
               <h2 className="font-medium mb-2 select-none">Planned Courses</h2>
               <div className="space-y-2">
                 {courses.map((course, index) => (
@@ -125,13 +124,14 @@ export default function Home() {
                       value={course.units}
                       onChange={(e) => updateCourse(index, 'units', e.target.value)}
                     >
-                      {[1, 2, 3, 4, 5].map(num => (
+                      {[1, 2, 3, 4, 5, 6, 7, 8].map(num => (
                         <option key={num} value={num}>{num}</option>
                       ))}
                     </select>
                     <button
                       onClick={() => removeCourse(index)}
                       className="w-10 h-10 flex items-center justify-center text-red-500 hover:bg-red-50 rounded text-xl select-none"
+                      aria-label="Remove course"
                     >
                       ×
                     </button>
@@ -147,18 +147,18 @@ export default function Home() {
               Add Course
             </button>
 
-            <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="mt-6 p-4 bg-gray-50 rounded-lg shadow-sm">
               <div className="text-xl font-medium text-center select-none">
                 Projected GPA: {calculateGPA()}
               </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      {/* Attribution */}
-      <div className="fixed bottom-4 right-4 text-sm text-gray-600 z-10 select-none">
-        Made by Ahmad Zafar
+        
+        {/* Attribution - moved inside the main container */}
+        <div className="text-center mt-4 text-sm text-gray-600 select-none">
+          Made by Ahmad Zafar
+        </div>
       </div>
     </main>
   );
