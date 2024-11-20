@@ -65,7 +65,7 @@ export default function Home() {
       <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg relative mt-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-[#8C1515]">Stanford GPA Calculator</h1>
-          <p className="text-gray-600 mt-2">Calculate your projected GPA based on Stanford's 4.3 scale</p>
+          <p className="text-gray-600 mt-2">Calculate your projected GPA based on Stanford&apos;s 4.3 scale</p>
         </div>
         
         <div className="space-y-6">
@@ -147,7 +147,7 @@ export default function Home() {
       
       {/* Attribution */}
       <div className="fixed bottom-4 right-4 text-sm text-gray-600">
-        Made by Ahmad Zafar, Stanford Class of 2027
+        Made by Ahmad Zafar
       </div>
     </main>
   );
