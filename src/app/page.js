@@ -63,41 +63,49 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 pb-20">
+    <main className="min-h-screen bg-gray-100 pb-20">
       {/* Stanford brand color header */}
       <div className="sticky top-0 left-0 right-0 h-16 bg-[#8C1515] z-10 shadow-md"/>
       
       <div className="w-full max-w-xl mx-auto px-4 py-6">
         <div className="bg-white p-4 md:p-6 rounded-lg shadow-lg">
-          <div className="text-center mb-6">
-            <h1 className="text-2xl md:text-4xl font-bold text-[#8C1515] select-none">Stanford GPA Calculator</h1>
-            <p className="text-gray-600 mt-2 text-sm md:text-base select-none">Calculate your projected GPA based on Stanford&apos;s 4.3 scale</p>
+          <div className="text-center mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold text-[#8C1515] select-none tracking-tight">
+              Stanford GPA Calculator
+            </h1>
+            <p className="text-gray-700 mt-2 text-base md:text-lg select-none font-medium">
+              Calculate your projected GPA based on Stanford&apos;s 4.3 scale
+            </p>
           </div>
           
           <div className="space-y-6">
             <div className="grid grid-cols-1 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1 select-none">Current GPA (optional)</label>
+                <label className="block text-base font-semibold mb-2 text-gray-800 select-none">
+                  Current GPA (optional)
+                </label>
                 <input
                   type="number"
                   inputMode="decimal"
                   step="0.01"
                   min="0"
                   max="4.3"
-                  className="w-full p-3 border rounded text-lg bg-white"
+                  className="w-full p-3 border rounded-lg text-lg bg-white text-gray-800 font-medium"
                   value={currentGPA}
                   onChange={(e) => setCurrentGPA(e.target.value)}
                   placeholder="Enter current GPA"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1 select-none">Total Units Completed</label>
+                <label className="block text-base font-semibold mb-2 text-gray-800 select-none">
+                  Total Units Completed
+                </label>
                 <input
                   type="number"
                   inputMode="numeric"
                   pattern="[0-9]*"
                   min="0"
-                  className="w-full p-3 border rounded text-lg bg-white"
+                  className="w-full p-3 border rounded-lg text-lg bg-white text-gray-800 font-medium"
                   value={currentUnits}
                   onChange={(e) => setCurrentUnits(e.target.value)}
                   placeholder="Enter total units"
@@ -106,12 +114,14 @@ export default function Home() {
             </div>
 
             <div className="mt-6">
-              <h2 className="font-medium mb-2 select-none">Planned Courses</h2>
-              <div className="space-y-2">
+              <h2 className="text-lg font-semibold mb-3 text-gray-800 select-none">
+                Planned Courses
+              </h2>
+              <div className="space-y-3">
                 {courses.map((course, index) => (
                   <div key={index} className="flex gap-2 items-center">
                     <select
-                      className="flex-1 p-3 border rounded text-lg bg-white"
+                      className="flex-1 p-3 border rounded-lg text-lg bg-white text-gray-800 font-medium"
                       value={course.grade}
                       onChange={(e) => updateCourse(index, 'grade', e.target.value)}
                     >
@@ -120,7 +130,7 @@ export default function Home() {
                       ))}
                     </select>
                     <select
-                      className="w-24 p-3 border rounded text-lg bg-white"
+                      className="w-24 p-3 border rounded-lg text-lg bg-white text-gray-800 font-medium"
                       value={course.units}
                       onChange={(e) => updateCourse(index, 'units', e.target.value)}
                     >
@@ -130,7 +140,7 @@ export default function Home() {
                     </select>
                     <button
                       onClick={() => removeCourse(index)}
-                      className="w-10 h-10 flex items-center justify-center text-red-500 hover:bg-red-50 rounded text-xl select-none"
+                      className="w-12 h-12 flex items-center justify-center text-red-600 hover:bg-red-50 rounded-lg text-2xl select-none font-bold"
                       aria-label="Remove course"
                     >
                       ×
@@ -142,21 +152,21 @@ export default function Home() {
 
             <button
               onClick={addCourse}
-              className="w-full py-3 bg-[#8C1515] text-white rounded hover:bg-[#6F1111] transition-colors text-lg font-medium select-none active:bg-[#5A0F0F]"
+              className="w-full py-4 bg-[#8C1515] text-white rounded-lg hover:bg-[#6F1111] transition-colors text-lg font-bold select-none active:bg-[#5A0F0F] shadow-sm"
             >
               Add Course
             </button>
 
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg shadow-sm">
-              <div className="text-xl font-medium text-center select-none">
+            <div className="mt-6 p-5 bg-gray-50 rounded-lg shadow-sm border border-gray-200">
+              <div className="text-2xl font-bold text-center select-none text-gray-800">
                 Projected GPA: {calculateGPA()}
               </div>
             </div>
           </div>
         </div>
         
-        {/* Attribution - moved inside the main container */}
-        <div className="text-center mt-4 text-sm text-gray-600 select-none">
+        {/* Attribution */}
+        <div className="text-center mt-6 text-base font-medium text-gray-700 select-none">
           Made by Ahmad Zafar
         </div>
       </div>
